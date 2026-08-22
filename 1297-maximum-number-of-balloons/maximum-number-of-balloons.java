@@ -28,9 +28,9 @@ class Solution {
             int fneed = need.get(c);
             int fhave = have.getOrDefault(c, 0);
 
-            int possible = fhave / fneed;
+            int times = fhave / fneed;
 
-            ans = Math.min(ans, possible);
+            ans = Math.min(ans, times);
         }
 
         return ans;
