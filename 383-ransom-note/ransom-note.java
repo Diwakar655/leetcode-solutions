@@ -1,15 +1,18 @@
+import java.util.HashMap;
+
 class Solution {
 
-    public boolean check(HashMap<Character, Integer> map1,
-                         HashMap<Character, Integer> map2) {
+    public boolean check(HashMap<Character, Integer> need,
+                         HashMap<Character, Integer> have) {
 
-        for (char c : map1.keySet()) {
-            if (!map2.containsKey(c)) {
-                 return false;
-            }
-            if (map2.get(c) < map1.get(c)) {
+        for (char c : need.keySet()) {
+
+            int fneed = need.get(c);
+            int fhave = have.getOrDefault(c, 0);
+
+            if (fhave < fneed) {
                 return false;
-            }   
+            }
         }
 
         return true;
@@ -17,17 +20,19 @@ class Solution {
 
     public boolean canConstruct(String ransomNote, String magazine) {
 
-        HashMap<Character, Integer> map1 = new HashMap<>();
-        HashMap<Character, Integer> map2 = new HashMap<>();
+        HashMap<Character, Integer> need = new HashMap<>();
+        HashMap<Character, Integer> have = new HashMap<>();
 
+        // Ransom note ki frequency
         for (char c : ransomNote.toCharArray()) {
-            map1.put(c, map1.getOrDefault(c, 0) + 1);
+            need.put(c, need.getOrDefault(c, 0) + 1);
         }
 
+        // Magazine ki frequency
         for (char c : magazine.toCharArray()) {
-            map2.put(c, map2.getOrDefault(c, 0) + 1);
+            have.put(c, have.getOrDefault(c, 0) + 1);
         }
 
-        return check(map1, map2);
+        return check(need, have);
     }
 }
