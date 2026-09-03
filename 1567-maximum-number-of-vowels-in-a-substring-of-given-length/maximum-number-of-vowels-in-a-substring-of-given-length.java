@@ -5,7 +5,7 @@ class Solution {
         int count = 0;
         int res = 0;
 
-        // First window
+        
         for (int i = 0; i <= high; i++) {
             char ch = s.charAt(i);
 
@@ -19,6 +19,7 @@ class Solution {
         res = count;
 
         while (high < n) {
+            
 
             // Remove left character
             char leftch = s.charAt(low);
